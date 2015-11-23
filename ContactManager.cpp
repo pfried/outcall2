@@ -376,6 +376,16 @@ Contact* ContactManager::findContact(QString name)
         return NULL;
 }
 
+Contact* ContactManager::findContactByPhoneNumber(QString number)
+{
+    QHash<QString, Contact*>::iterator iter = m_PhoneNumbers.find(number);
+
+    if(iter != m_PhoneNumbers.end())
+        return iter.value();
+    else
+        return NULL;
+}
+
 void ContactManager::onRefreshContactsTimer()
 {
    // m_RefreshContactsTimer.stop();

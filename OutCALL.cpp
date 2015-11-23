@@ -248,19 +248,13 @@ void OutCall::onCallReceived(const QMap<QString, QVariant> &call)
     bool contactOnUnknown   = global::getSettingsValue("contact_unknown", "outlook").toBool();
     bool isCallerIDUnknown  = true;
     int callerLength        = from.size();
-
-    QList<Contact*> contactList = g_pContactManager->getContacts();
     QString outlookContactName;
-    for(int i = 0; i < contactList.size(); ++i)
-    {
-        Contact *contact = contactList[i];
-        QList<QString> numbers  = contact->numbers.values();
-        if (numbers.contains(from))
-        {
-            outlookContactName = contact->name;
-            isCallerIDUnknown = false;
-            break;
-        }
+
+    Contact *contact = g_pContactManager->findContactByPhoneNumber(from);
+
+    if(contact != NULL) {
+        outlookContactName = contact->name;
+        isCallerIDUnknown = false;
     }
 
     if (callerName.isEmpty() || callerName == "<unknown>" || !outlookContactName.isEmpty())
