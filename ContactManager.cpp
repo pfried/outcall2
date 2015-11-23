@@ -331,7 +331,7 @@ void ContactManager::loadContacts()
 
     m_LoadContactsMutex.unlock();
 
-    emit contactsLoaded(m_contacts.values());
+    //emit contactsLoaded(m_contacts.values());
 }
 
 void ContactManager::loadContactsThreadStarted()
