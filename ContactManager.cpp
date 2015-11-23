@@ -378,6 +378,11 @@ Contact* ContactManager::findContact(QString name)
 
 Contact* ContactManager::findContactByPhoneNumber(QString number)
 {
+    if(!number.startsWith("00")) {
+        number = number.remove(0,1);
+        number = "0049" + number;
+    }
+
     QHash<QString, Contact*>::iterator iter = m_PhoneNumbers.find(number);
 
     if(iter != m_PhoneNumbers.end())
