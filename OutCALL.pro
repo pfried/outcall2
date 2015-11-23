@@ -14,11 +14,7 @@ TARGET = OutCALL
 TEMPLATE = app
 
 
-LIBS +=	Shell32.lib \
-        Advapi32.lib \
-
-
-
+QMAKE_CXXFLAGS += -std=c++0x
 
 SOURCES += main.cpp\
     DebugInfoDialog.cpp \
